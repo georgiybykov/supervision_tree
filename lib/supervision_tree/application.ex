@@ -1,6 +1,6 @@
 defmodule SupervisionTree.Application do
   @moduledoc """
-  Supervision Tree - is application includes supervisors and
+  Supervision Tree - is an application includes supervisors and
   workers using different strategies for initialize and restart.
   """
 
