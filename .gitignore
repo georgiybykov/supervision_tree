@@ -24,3 +24,7 @@ supervision_tree-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Ignore Dialyzer PLTs files
+/priv/plts/*
+!/priv/plts/.keep

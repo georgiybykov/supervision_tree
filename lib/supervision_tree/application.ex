@@ -19,6 +19,7 @@ defmodule SupervisionTree.Application do
           %{id: non_neg_integer(), restart: atom(), start: tuple()}
 
   @impl true
+  @spec start(any(), any()) :: {:ok, pid()} | {:error, any()}
   def start(_type, _args) do
     children = [
       worker(:main_worker_with_permanent_restart),
