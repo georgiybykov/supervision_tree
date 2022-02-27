@@ -22,7 +22,7 @@ ___
 
 ### **For example, the Supervision Tree:**
 
-![Supervision Tree](/priv/static/images/applications.jpg)
+![Supervision Tree](/priv/static/images/processes.jpg)
 
 You can check it out by:
 
@@ -46,27 +46,29 @@ Erlang/OTP 24 [erts-12.1.5] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threa
 Compiling 1 file (.ex)
 
 21:47:07.498 [info]  main_worker_with_permanent_restart: is starting
+21:47:07.501 [info]  main_worker_with_transient_restart: is starting
 21:47:07.501 [info]  first_worker: is starting
 21:47:07.501 [info]  second_worker: is starting
 21:47:07.501 [info]  third_worker: is starting
 21:47:07.501 [info]  fourth_worker: is starting
 21:47:07.501 [info]  fifth_worker: is starting
 21:47:07.501 [info]  sixth_worker: is starting
-21:47:07.501 [info]  sub_worker: is starting
 21:47:07.501 [info]  seventh_worker: is starting
 21:47:07.501 [info]  eighth_worker: is starting
 21:47:07.501 [info]  ninth_worker: is starting
-21:47:07.501 [info]  main_worker_with_transient_restart: is starting
+21:47:07.501 [info]  sub_worker: is starting
 
 # Let's try to terminate one of the workers right here:
-iex(1)> SupervisionTree.Worker.stop(:fifth_worker)
+iex(1)> SupervisionTree.Worker.stop(:seventh_worker)
 
 # We can trace the behavior of workers below:
-21:48:02.514 [info]  fifth_worker: is terminating
+21:48:02.514 [info]  seventh_worker: is terminating
 21:48:02.514 [info]  sub_worker: is terminating
-21:48:02.514 [info]  sixth_worker: is terminating
-21:48:02.514 [info]  fifth_worker: is starting
-21:48:02.514 [info]  sixth_worker: is starting
+21:48:02.514 [info]  ninth_worker: is terminating
+21:48:02.514 [info]  eighth_worker: is terminating
+21:48:02.514 [info]  seventh_worker: is starting
+21:48:02.515 [info]  eighth_worker: is starting
+21:48:02.515 [info]  ninth_worker: is starting
 21:48:02.515 [info]  sub_worker: is starting
 
 :ok
