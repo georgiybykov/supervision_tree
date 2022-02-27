@@ -4,8 +4,8 @@ defmodule SupervisionTree.Worker do
   and terminating functionality to show how it works
   with different supervision strategies.
 
-  It also includes the ability to join one custom
-  process group in order to broadcast and receive
+  It also includes the ability to join main scope of
+  the process group in order to broadcast and receive
   messages from other processes.
   """
 
