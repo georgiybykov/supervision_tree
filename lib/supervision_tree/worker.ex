@@ -28,15 +28,14 @@ defmodule SupervisionTree.Worker do
     # First we have to start the main scope for the process group.
     :pg.start_link()
 
-    # Now we can create a custom scope.
-    :pg.start_link(:feedback)
-
     # Exit signals arriving to a process are
     # converted to {'EXIT', From, Reason} messages,
     # which can be received as ordinary messages.
     Process.flag(:trap_exit, true)
 
-    :pg.join(:feedback, self())
+    # Take a note that `:pg` is a name of the main scope of the process group.
+    # You can also create custom scope by `:pg.start_link(:your_custom_group)`.
+    :pg.join(:pg, self())
 
     log("#{label}: is starting")
 
@@ -60,8 +59,8 @@ defmodule SupervisionTree.Worker do
   @spec broadcast(atom(), atom()) :: :ok
   defp broadcast(label, event) do
     Enum.each(
-      :pg.get_members(:feedback),
-      fn pid -> Process.send(pid, {event, label}, [:nosuspend]) end
+      :pg.get_members(:pg),
+      &send(&1, {event, label})
     )
   end
 

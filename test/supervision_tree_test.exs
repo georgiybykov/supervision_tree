@@ -6,10 +6,8 @@ defmodule SupervisionTreeTest do
   setup do
     :pg.start_link()
 
-    :pg.start_link(:feedback)
-
-    # Join feedback group so we can listen for messages from worker processes
-    :pg.join(:feedback, self())
+    # Join main process group so we can listen for messages from worker processes.
+    :pg.join(:pg, self())
 
     :ok
   end
