@@ -23,6 +23,7 @@ defmodule SupervisionTree.Application do
   def start(_type, _args) do
     children = [
       worker(:main_worker_with_permanent_restart),
+      worker(:main_worker_with_transient_restart, :transient),
       supervisor(
         [
           worker(:first_worker),
@@ -36,7 +37,16 @@ defmodule SupervisionTree.Application do
         [
           worker(:fourth_worker),
           worker(:fifth_worker),
-          worker(:sixth_worker),
+          worker(:sixth_worker)
+        ],
+        strategy: :one_for_all,
+        name: :third_supervisor
+      ),
+      supervisor(
+        [
+          worker(:seventh_worker),
+          worker(:eighth_worker),
+          worker(:ninth_worker),
           supervisor(
             [worker(:sub_worker)],
             strategy: :one_for_one,
@@ -45,17 +55,7 @@ defmodule SupervisionTree.Application do
         ],
         strategy: :rest_for_one,
         name: :second_supervisor
-      ),
-      supervisor(
-        [
-          worker(:seventh_worker),
-          worker(:eighth_worker),
-          worker(:ninth_worker)
-        ],
-        strategy: :one_for_all,
-        name: :third_supervisor
-      ),
-      worker(:main_worker_with_transient_restart, :transient)
+      )
     ]
 
     # This is the main supervisor who runs and supervises all children identified above.

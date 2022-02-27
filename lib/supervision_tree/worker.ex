@@ -28,7 +28,7 @@ defmodule SupervisionTree.Worker do
     # First we have to start the main scope for the process group.
     :pg.start_link()
 
-    # Now we can create a unique scope.
+    # Now we can create a custom scope.
     :pg.start_link(:feedback)
 
     # Exit signals arriving to a process are
