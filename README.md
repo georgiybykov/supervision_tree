@@ -32,7 +32,7 @@ $ iex -S mix
 iex(1)> :observer.start
 ```
 
-And then go to "Applications" tab (i.g. the screenshot is above).
+And then go to the "Applications" tab (i.g. the screenshot is above).
 
 ___
 
