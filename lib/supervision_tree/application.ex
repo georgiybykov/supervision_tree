@@ -40,7 +40,7 @@ defmodule SupervisionTree.Application do
           worker(:sixth_worker)
         ],
         strategy: :one_for_all,
-        name: :third_supervisor
+        name: :second_supervisor
       ),
       supervisor(
         [
@@ -54,7 +54,7 @@ defmodule SupervisionTree.Application do
           )
         ],
         strategy: :rest_for_one,
-        name: :second_supervisor
+        name: :third_supervisor
       )
     ]
 
